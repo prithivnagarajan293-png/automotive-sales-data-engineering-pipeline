@@ -1,0 +1,6 @@
+pandas
+sqlalchemy
+pymysql
+boto3
+pyarrow
+snowflake-connector-python
