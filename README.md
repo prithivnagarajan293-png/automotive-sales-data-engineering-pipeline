@@ -44,3 +44,74 @@ Kaggle CSV
 ## Author
 
 Prithiv Nagarajan 
+
+
+DIAGRAM:
+
+                    +-------------------+
+                    |   Kaggle Dataset  |
+                    |   Sales_data.csv  |
+                    +-------------------+
+                              |
+                              v
+                    +-------------------+
+                    |      MySQL        |
+                    |   retail_db       |
+                    |   sales_data      |
+                    +-------------------+
+                              |
+                              | Python ETL
+                              | (Pandas + SQLAlchemy)
+                              v
+                    +-------------------+
+                    |    AWS S3 RAW     |
+                    | raw/sales_data.csv|
+                    +-------------------+
+                              |
+                              | Python Transformation
+                              | (Pandas + PyArrow)
+                              v
+                    +----------------------+
+                    |   AWS S3 TARGET      |
+                    |target/sales_data.parquet|
+                    +----------------------+
+                              |
+                              | Python Loader
+                              | (boto3 + Snowflake Connector)
+                              v
+                    +-------------------+
+                    |    Snowflake      |
+                    | retail_db         |
+                    | retail_schema     |
+                    | sales_data        |
+                    +-------------------+
+                              |
+                              v
+                    +-------------------+
+                    |  Data Analysts    |
+                    | SQL Analytics     |
+                    | Reporting / BI    |
+                    +-------------------+
+
+
+FLOWCHART:
+
+# Architecture Diagram
+
+```text
+Kaggle CSV Dataset
+        ↓
+MySQL Database
+        ↓
+Python ETL Extraction
+        ↓
+AWS S3 Raw Layer (CSV)
+        ↓
+Python Transformation
+        ↓
+AWS S3 Target Layer (Parquet)
+        ↓
+Snowflake Data Warehouse
+        ↓
+Analytics / Reporting
+```
